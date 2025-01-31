@@ -4,13 +4,7 @@ public class AsciiPrinter {
     private Cell[][] field;
 
     public AsciiPrinter() {
-        this.field = new Cell[10][6]; // 5x5 grid
-        // Optionally, you can initialize each Cell in the array if needed
-        for (int i = 0; i < field.length; i++) {
-            for (int j = 0; j < field[i].length; j++) {
-                field[i][j] = new Cell(); // Initializing each cell
-            }
-        }
+        reset();
     }
 
     public void draw(char letter, int x1, int y1, int x2, int y2) {
@@ -87,6 +81,16 @@ public class AsciiPrinter {
                     this.field[x][y].getRectangles().remove(rect);
                     this.field[x + difX][y + difY].getRectangles().addLast(rect);
                 }
+            }
+        }
+    }
+
+    public void reset() {
+        this.field = new Cell[10][6]; // 5x5 grid
+        // Optionally, you can initialize each Cell in the array if needed
+        for (int i = 0; i < field.length; i++) {
+            for (int j = 0; j < field[i].length; j++) {
+                field[i][j] = new Cell(); // Initializing each cell
             }
         }
     }

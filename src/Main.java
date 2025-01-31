@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         var printer = new AsciiPrinter();
 
-        printer.draw('L', 1,1,4,4);
+        printer.draw('L', 1,1,2,2);
 
         printer.draw('A', 2,2,5,5);
         printer.bringToFront(1,1);
