@@ -20,6 +20,18 @@ public class Main {
         printer.print();
         printer.dragAndDrop(1,1,0,0);
         printer.print();
+
+
+        printer.reset();
+
+
+        // test two with the same letter
+        printer.draw('L', 1,1,2,2);
+
+        printer.draw('L', 1,1,2,2);
+
+        printer.dragAndDrop(1,1,3,3);
+        printer.print();
     }
 
 
