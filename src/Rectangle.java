@@ -1,5 +1,6 @@
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 @AllArgsConstructor
 @Getter
@@ -12,6 +13,9 @@ public class Rectangle {
     private int topRightY;
 
     private char letter;
+
+    @Setter
+    private int layer;
 
 
     // !!!!! Intentionally do not implement @Equals

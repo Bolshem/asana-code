@@ -1,14 +1,17 @@
+import java.util.HashMap;
 
 public class AsciiPrinter {
 
     private Cell[][] field;
+
+    private static int layer = 0;
 
     public AsciiPrinter() {
         reset();
     }
 
     public void draw(char letter, int x1, int y1, int x2, int y2) {
-        var rect = new Rectangle(x1,y1, x2, y2, letter);
+        var rect = new Rectangle(x1,y1, x2, y2, letter, layer++);
 
         for (int x = x1; x <= x2; x++) {
             for (int y = y1; y <= y2; y++) {
@@ -26,6 +29,8 @@ public class AsciiPrinter {
 
         // get the top most rectangle
         var rect = this.field[selectX][selectY].getRectangles().getFirst();
+
+        rect.setLayer(layer++);
 
         // go over its original coordinates and bring it to the top of the list
         for (int x = rect.getTopLeftX(); x <= rect.getTopRightX(); x++) {
@@ -78,7 +83,13 @@ public class AsciiPrinter {
                 // some areas ,ay be deleted
                 // do not shift rectangle if it was erased from this cell
                 if (this.field[x][y].getRectangles().contains(rect)) {
-                    this.field[x][y].getRectangles().remove(rect);
+                    this.field[x][y].getRectangles().remove(rect); //
+
+
+                    // select right place according to layer should be sorted in decreasing order
+
+                     // 10, 8,7, 6, 4
+
                     this.field[x + difX][y + difY].getRectangles().addLast(rect);
                 }
             }
@@ -86,12 +97,14 @@ public class AsciiPrinter {
     }
 
     public void reset() {
-        this.field = new Cell[10][6]; // 5x5 grid
-        // Optionally, you can initialize each Cell in the array if needed
+        this.field = new Cell[10][6];
+
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {
-                field[i][j] = new Cell(); // Initializing each cell
+                field[i][j] = new Cell();
             }
         }
     }
 }
+
+// O(n^2  * log K) //

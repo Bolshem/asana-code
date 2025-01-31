@@ -12,6 +12,8 @@ public class Main {
         printer.draw('L', 1,1,2,2);
 
         printer.draw('A', 2,2,5,5);
+        printer.print();
+
         printer.bringToFront(1,1);
 
         printer.print();
